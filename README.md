@@ -1,8 +1,12 @@
-# 🛒 Amazon Product Reviews Analysis & Classification
+# 🧠 Scalable NLP Sentiment Analysis & Review Clustering with PySpark
 
-This project was completed as part of the **STAT483: Big Data Analytics** course, employing PySpark and machine learning techniques to analyze Amazon product reviews for sentiment classification and content clustering.
+Completed as part of the **STAT483: Big Data Analytics** course at the University of Bahrain.
 
-## 👥 Team
+This project applies distributed computing, Natural Language Processing (NLP), supervised machine learning, and unsupervised clustering techniques to analyze millions of Amazon product reviews using Apache Spark and PySpark.
+
+---
+
+# 👥 Team
 
 - **Ebrahim Juma Shakak Alsawan**
 - **Sadeq Jaafar Ali Deyab**
@@ -10,190 +14,401 @@ This project was completed as part of the **STAT483: Big Data Analytics** course
 - **Ali Sameer Ali Alzenji**
 - **Ahmed Sadiq Ali Alsameea**
 
-## 🎯 Objective
+---
 
-To extract meaningful insights from Amazon product reviews using distributed computing and machine learning techniques, implementing both unsupervised clustering and supervised classification to analyze textual review data at scale.
+# 🎯 Project Objective
 
-## 📊 Dataset Overview
+The objective of this project was to extract meaningful insights from large-scale Amazon review data using distributed machine learning and NLP techniques.
 
-**Source**: [Amazon Reviews Polarity Dataset](https://www.kaggle.com/datasets/abdallahwagih/amazon-reviews)
+The project focused on:
+- Sentiment classification
+- Review clustering
+- Text preprocessing
+- Large-scale feature engineering
+- Distributed NLP pipelines
+- Pattern discovery from customer reviews
 
-**Size**: 3.8 million reviews total
-- **Training Data**: 3.6 million samples (1.8M positive + 1.8M negative)
-- **Test Data**: 400,000 samples (200K per class)
-- **Rating Scale**: 1-2 (negative) and 4-5 (positive) star reviews
-- **Perfect Class Balance**: Equal distribution eliminates bias concerns
+The analysis combined supervised and unsupervised machine learning workflows to evaluate customer sentiment and uncover hidden product-review structures at scale.
 
-## 🔍 Key Findings
+---
 
-### Sentiment Classification Results
-- **Accuracy**: 85.57%
-- **F1-Score**: 85.71%
-- **Precision**: 84.89%
-- **Recall**: 86.54%
-- **False Positive Rate**: 15.40%
+# 📊 Dataset Overview
 
-### Word Pattern Analysis
-**Most Common Words Overall**: "book", "one", "like", "good", "great"
+### Dataset Source
+Amazon Reviews Dataset from Kaggle
 
-**Positive Reviews Vocabulary**:
-- Emotional language: "great", "love", "best", "wonderful"
-- Quality descriptors: "excellent", "amazing", "perfect"
+### Dataset Link
+https://www.kaggle.com/datasets/abdallahwagih/amazon-reviews
 
-**Negative Reviews Vocabulary**:
-- Transactional focus: "money", "bought", "product", "better"
-- Practical concerns: "time", "get", "would"
+### Dataset Scale
+- **Total Reviews:** 3.8 Million
+- **Training Dataset:** 3.6 Million Reviews
+- **Test Dataset:** 400,000 Reviews
 
-### Clustering Insights
-- **Optimal Clusters**: K=12 using elbow method
-- **Product-Based Grouping**: Reviews naturally clustered by product categories
-  - **Cluster 2**: Books ("book", "read", "good")
-  - **Cluster 4**: Music ("album", "cd", "songs", "music")  
-  - **Cluster 7**: Movies ("movie", "film", "good")
-- **Highly Skewed Distribution**: Majority in general cluster, specialized clusters for niche categories
+### Sentiment Structure
+- Ratings 1–2 → Negative Reviews
+- Ratings 4–5 → Positive Reviews
 
-## 🛠 Technology Stack
+The dataset provides large-scale customer review text data suitable for distributed Natural Language Processing and machine learning analysis.
 
-### Big Data Processing
-- **Apache Spark**: Distributed computing framework
-- **PySpark**: Python API for Spark operations
-- **Spark MLlib**: Machine learning algorithms at scale
+---
 
-### Machine Learning Techniques
-- **Supervised Learning**: Logistic Regression for sentiment classification
-- **Unsupervised Learning**: K-means clustering for content grouping
-- **Feature Engineering**: TF-IDF vectorization, Bag-of-Words
+# 📖 Data Dictionary
 
-### Text Processing Pipeline
-- **Tokenization**: RegexTokenizer for word extraction
-- **Stop Words Removal**: Common word filtering
-- **Count Vectorization**: Text-to-numeric conversion (vocab size: 5000)
-- **IDF Transformation**: Term importance scaling
+| Column | Type | Description |
+|--------|------|-------------|
+| `reviewerID` | str | Unique identifier for the reviewer/customer |
+| `asin` | str | Amazon Standard Identification Number (ASIN) representing the product |
+| `reviewerName` | str | Name or username of the reviewer |
+| `helpful` | array[int] | Helpfulness rating represented as `[helpful_votes, total_votes]` |
+| `reviewText` | str | Full text review written by the customer |
+| `overall` | int | Product rating score given by the customer (1–5 stars) |
+| `summary` | str | Short summary/title of the review |
+| `unixReviewTime` | int | Review timestamp stored in Unix time format |
+| `reviewTime` | str | Human-readable review date |
 
-## 📈 Analysis Workflow
+---
 
-### 1. Data Preprocessing
+# ⚙️ Engineered NLP Features
+
+| Feature | Description |
+|---|---|
+| `body_tokens` | Tokenized review text |
+| `body_clean` | Review text after stop-word removal |
+| `raw_features` | CountVectorizer numerical representation |
+| `features` | TF-IDF feature vectors used for machine learning |
+| `prediction` | Predicted sentiment class |
+| `cluster` | Assigned K-means cluster label |
+
+---
+
+# 🧠 Business Problem
+
+Large e-commerce platforms generate millions of customer reviews daily, making manual review analysis impossible at scale.
+
+This project aimed to solve several analytical challenges:
+
+- Automatically classify customer sentiment
+- Identify hidden product-review groupings
+- Discover review language patterns
+- Build scalable NLP pipelines using distributed computing
+- Analyze customer satisfaction trends efficiently
+
+The project demonstrates how big data technologies can transform unstructured text into actionable business intelligence.
+
+---
+
+# ⚙️ Distributed Computing Highlights
+
+- Processed 3.8 million Amazon reviews using Apache Spark
+- Leveraged distributed PySpark pipelines for scalable NLP preprocessing
+- Applied Spark MLlib for machine learning at scale
+- Implemented memory-efficient TF-IDF vectorization workflows
+- Used parallelized transformations and distributed computations
+
+---
+
+# 🧹 NLP Preprocessing Workflow
+
+The project implemented a complete distributed NLP preprocessing pipeline.
+
+## Preprocessing Steps
+
 ```python
-# Lowercase conversion for consistent tokenization
+✔ Lowercase text normalization
+✔ Regex tokenization
+✔ Stop-word removal
+✔ CountVectorizer transformation
+✔ TF-IDF feature scaling
+✔ Sparse vector generation
+✔ Distributed feature engineering
+```
+
+---
+
+# 🛠 Technology Stack
+
+## Big Data Processing
+- Apache Spark
+- PySpark
+- Spark MLlib
+
+## Machine Learning
+- Logistic Regression
+- K-Means Clustering
+- TF-IDF Vectorization
+- Bag-of-Words Modeling
+
+## NLP Processing
+- RegexTokenizer
+- StopWordsRemover
+- CountVectorizer
+- IDF Transformation
+
+## Visualization & Analysis
+- Pandas
+- Matplotlib
+- Seaborn
+- WordCloud
+
+---
+
+# 📈 Analysis Workflow
+
+## 1. Data Preprocessing
+
+```python
+# Lowercase normalization
 train_df = train_df.withColumn("title_lower", lower(col("title")))
                    .withColumn("body_lower", lower(col("body")))
 
-# Tokenization and stop word removal
+# Tokenization and stop-word removal
 tokenizer = RegexTokenizer(inputCol="body_lower", outputCol="body_tokens")
 stop_remover = StopWordsRemover(inputCol="body_tokens", outputCol="body_clean")
 ```
 
-### 2. Feature Extraction & Classification
+---
+
+## 2. Feature Engineering & Sentiment Classification
+
 ```python
-# TF-IDF Pipeline for sentiment classification
+# TF-IDF Pipeline
 cv = CountVectorizer(inputCol="body_clean", outputCol="raw_features", vocabSize=5000)
 idf = IDF(inputCol="raw_features", outputCol="features")
+
+# Logistic Regression
 lr = LogisticRegression(featuresCol="features", labelCol="label")
 
 pipeline = Pipeline(stages=[cv, idf, lr])
 model = pipeline.fit(train_df)
 ```
 
-### 3. Clustering Analysis
+---
+
+## 3. Clustering Analysis
+
 ```python
-# K-means clustering with elbow method optimization
-kmeans = KMeans(k=12, initMode="k-means||", maxIter=20, featuresCol="body_bow")
+# K-Means clustering
+kmeans = KMeans(
+    k=12,
+    initMode="k-means||",
+    maxIter=20,
+    featuresCol="body_bow"
+)
+
 clustering_model = kmeans.fit(vectorized_data)
 ```
 
-## 🔗 Key Insights
+---
 
-### The Language of Satisfaction
-Our analysis reveals distinct vocabulary patterns:
-- **Satisfied customers** use emotional, evaluative language focusing on quality and experience
-- **Dissatisfied customers** employ transactional language emphasizing product attributes and value concerns
+# 📊 Sentiment Classification Results
 
-### Product Category Recognition
-Unsupervised clustering successfully identified product categories without labels:
-- Reviews naturally segregated into books, movies, music, and general product clusters
-- Product-specific vocabulary serves as strong similarity indicator
-
-### Scalability Achievement
-Successfully processed 3.8 million reviews using distributed computing:
-- Efficient memory management and parallelization
-- Real-world big data application demonstration
-
-## 📁 Project Structure
-
-```
-├── data/
-│   ├── train.csv                 # Training dataset (3.6M reviews)
-│   └── test.csv                  # Test dataset (400K reviews)
-├── notebooks/
-│   ├── data_exploration.ipynb    # EDA and visualization
-│   ├── preprocessing.ipynb       # Data cleaning pipeline  
-│   ├── classification.ipynb      # Supervised learning analysis
-│   └── clustering.ipynb          # Unsupervised learning analysis
-├── src/
-│   ├── preprocessing.py          # Text preprocessing utilities
-│   ├── classification.py         # Logistic regression implementation
-│   ├── clustering.py             # K-means clustering implementation
-│   └── evaluation.py             # Model evaluation metrics
-├── results/
-│   ├── confusion_matrix.png      # Classification performance
-│   ├── word_clouds.png          # Sentiment-specific vocabularies
-│   ├── cluster_distribution.png  # Cluster size visualization
-│   └── elbow_method.png         # Optimal k determination
-├── requirements.txt              # Python dependencies
-└── README.md                    # Project documentation
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-```bash
-# Install required packages
-pip install pyspark pandas matplotlib seaborn wordcloud scikit-learn
-```
-
-### Running the Analysis
-```bash
-# 1. Start Spark session and load data
-python src/preprocessing.py
-
-# 2. Run sentiment classification
-python src/classification.py
-
-# 3. Perform clustering analysis  
-python src/clustering.py
-
-# 4. Generate evaluation metrics
-python src/evaluation.py
-```
-
-## 📊 Performance Metrics
-
-### Classification Performance
 | Metric | Score |
 |--------|-------|
 | Accuracy | 85.57% |
 | Precision | 84.89% |
 | Recall | 86.54% |
 | F1-Score | 85.71% |
+| False Positive Rate | 15.40% |
 
-### Confusion Matrix Results
-- **True Negatives**: 169,192
-- **True Positives**: 173,085  
-- **False Positives**: 30,802
-- **False Negatives**: 26,912
-
-## 🔮 Future Enhancements
-
-- **Deep Learning Integration**: LSTM/BERT models for improved accuracy
-- **Real-time Processing**: Kafka streaming for live review analysis
-- **Multi-class Classification**: Fine-grained sentiment categories (1-5 stars)
-- **Aspect-based Analysis**: Product feature-specific sentiment extraction
-
-## 📌 Acknowledgements
-
-Special thanks to the course instructor for guidance in big data analytics applications and distributed computing concepts.
-
-*Submitted as part of STAT483: Big Data Analytics*
 ---
 
-**Data Source**: [Amazon Reviews Dataset on Kaggle](https://www.kaggle.com/datasets/abdallahwagih/amazon-reviews)
+# 📌 Classification Insights
+
+- Logistic Regression achieved strong sentiment classification performance on millions of reviews.
+- Positive reviews frequently used emotional and quality-focused language.
+- Negative reviews focused more heavily on product issues and transactional concerns.
+- TF-IDF feature engineering significantly improved sentiment detection quality.
+
+---
+
+# 📷 Classification Visuals
+
+<p align="center">
+  <img src="results/confusion_matrix.png" width="45%">
+  <img src="results/word_clouds.png" width="45%">
+</p>
+
+---
+
+# 📈 Clustering Analysis
+
+## Clustering Results
+
+- Optimal clusters identified using the elbow method: **K = 12**
+- Reviews naturally grouped by product category and vocabulary patterns.
+- K-means clustering successfully separated major product themes.
+
+---
+
+# 📌 Clustering Insights
+
+### Product-Based Clusters Identified
+
+| Cluster | Dominant Vocabulary |
+|---|---|
+| Cluster 2 | book, read, good |
+| Cluster 4 | album, cd, songs, music |
+| Cluster 7 | movie, film, good |
+
+### Key Findings
+- Product-specific vocabulary strongly influenced clustering behavior.
+- Review similarity naturally formed category-based groupings.
+- Cluster distribution revealed both generalized and niche review categories.
+
+---
+
+# 📷 Clustering Visuals
+
+<p align="center">
+  <img src="results/elbow_method.png" width="45%">
+  <img src="results/cluster_distribution.png" width="45%">
+</p>
+
+---
+
+# 🔍 Key Insights
+
+## The Language of Satisfaction
+
+Satisfied customers commonly used:
+- emotional language
+- evaluative descriptors
+- quality-oriented vocabulary
+
+Examples:
+- great
+- amazing
+- perfect
+- excellent
+
+---
+
+## The Language of Dissatisfaction
+
+Negative reviews focused more heavily on:
+- transactional concerns
+- product defects
+- pricing/value complaints
+
+Examples:
+- money
+- bought
+- problem
+- return
+
+---
+
+## Scalability Achievement
+
+This project successfully demonstrated:
+- distributed machine learning
+- scalable NLP processing
+- large-scale text analytics
+- memory-efficient Spark workflows
+
+on a dataset containing millions of reviews.
+
+---
+
+# 📁 Project Structure
+
+```bash
+.
+├── data/
+│   ├── train.csv
+│   └── test.csv
+├── notebooks/
+│   ├── data_exploration.ipynb
+│   ├── preprocessing.ipynb
+│   ├── classification.ipynb
+│   └── clustering.ipynb
+├── src/
+│   ├── preprocessing.py
+│   ├── classification.py
+│   ├── clustering.py
+│   └── evaluation.py
+├── results/
+│   ├── confusion_matrix.png
+│   ├── word_clouds.png
+│   ├── cluster_distribution.png
+│   └── elbow_method.png
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# 🚀 Getting Started
+
+## Install Dependencies
+
+```bash
+pip install pyspark pandas matplotlib seaborn wordcloud scikit-learn
+```
+
+---
+
+## Run the Analysis
+
+```bash
+# Preprocessing
+python src/preprocessing.py
+
+# Classification
+python src/classification.py
+
+# Clustering
+python src/clustering.py
+
+# Evaluation
+python src/evaluation.py
+```
+
+---
+
+# 🔮 Future Enhancements
+
+- Deep Learning integration using LSTM/BERT
+- Real-time streaming analysis using Kafka
+- Multi-class sentiment classification
+- Aspect-based sentiment analysis
+- Advanced transformer-based NLP pipelines
+
+---
+
+# 📊 Key Skills Demonstrated
+
+- Big Data Analytics
+- Distributed Computing
+- Natural Language Processing (NLP)
+- Machine Learning
+- Sentiment Classification
+- K-Means Clustering
+- PySpark
+- Spark MLlib
+- Feature Engineering
+- TF-IDF Vectorization
+- Text Mining
+- Scalable Data Processing
+
+---
+
+# 🎓 Course Information
+
+**Course:** STAT483 – Big Data Analytics  
+**Institution:** University of Bahrain  
+**Project Type:** Big Data NLP & Machine Learning Project
+
+---
+
+# 👤 Authors
+
+### Ebrahim Juma Shakak Alsawan
+- LinkedIn: https://www.linkedin.com/in/ebrahim-alsawan-a6977a2b9/
+
+### Team Members
+- Sadeq Jaafar Ali Deyab
+- Salman Wael Salman
+- Ali Sameer Ali Alzenji
+- Ahmed Sadiq Ali Alsameea
