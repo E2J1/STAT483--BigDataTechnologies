@@ -225,8 +225,8 @@ clustering_model = kmeans.fit(vectorized_data)
 # 📷 Classification Visuals
 
 <p align="center">
-  <img src="results/confusion_matrix.png" width="45%">
-  <img src="results/word_clouds.png" width="45%">
+  <img src="images/confusion_matrix.png" width="45%">
+  <img src="images/word_clouds.png" width="45%">
 </p>
 
 ---
@@ -261,8 +261,8 @@ clustering_model = kmeans.fit(vectorized_data)
 # 📷 Clustering Visuals
 
 <p align="center">
-  <img src="results/elbow_method.png" width="45%">
-  <img src="results/cluster_distribution.png" width="45%">
+  <img src="images/elbow_method.png" width="45%">
+  <img src="images/cluster_distribution.png" width="45%">
 </p>
 
 ---
@@ -328,7 +328,7 @@ on a dataset containing millions of reviews.
 │   ├── classification.py
 │   ├── clustering.py
 │   └── evaluation.py
-├── results/
+├── images/
 │   ├── confusion_matrix.png
 │   ├── word_clouds.png
 │   ├── cluster_distribution.png
