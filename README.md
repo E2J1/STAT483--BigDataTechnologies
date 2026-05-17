@@ -34,18 +34,18 @@ The analysis combined supervised and unsupervised machine learning workflows to 
 
 # 📊 Dataset Overview
 
-### Dataset Source
+## Dataset Source
 Amazon Reviews Dataset from Kaggle
 
-### Dataset Link
+## Dataset Link
 https://www.kaggle.com/datasets/abdallahwagih/amazon-reviews
 
-### Dataset Scale
+## Dataset Scale
 - **Total Reviews:** 3.8 Million
 - **Training Dataset:** 3.6 Million Reviews
 - **Test Dataset:** 400,000 Reviews
 
-### Sentiment Structure
+## Sentiment Structure
 - Ratings 1–2 → Negative Reviews
 - Ratings 4–5 → Positive Reviews
 
@@ -243,7 +243,7 @@ clustering_model = kmeans.fit(vectorized_data)
 
 # 📌 Clustering Insights
 
-### Product-Based Clusters Identified
+## Product-Based Clusters Identified
 
 | Cluster | Dominant Vocabulary |
 |---|---|
